@@ -9,13 +9,13 @@
 <body>
   <header class="site-header">
     <h1>Call Break Calculator</h1>
-    <p>Round scoring assistant with support for achieved tricks = 0</p>
+    <p>5-round scoring assistant with support for achieved tricks = 0</p>
   </header>
 
   <main class="app-shell">
     <section class="card setup-card">
       <h2>Players</h2>
-      <div class="player-grid" id="player-grid">
+      <div class="player-grid">
         <label class="field">
           <span>Player 1</span>
           <input id="name-0" class="input" value="Player 1" maxlength="24" />
@@ -37,14 +37,24 @@
 
     <section class="card round-card">
       <div class="round-head">
-        <h2 id="round-title">Round 1</h2>
-        <p class="muted">Scoring rule: made call = <code>call + 0.1 × overtricks</code>, failed call = <code>-call</code></p>
+        <h2 id="round-title">Round 1 / 5</h2>
+        <p class="muted">Step 1: Fix expected points. Step 2: Enter achieved points and submit round.</p>
       </div>
 
-      <div class="round-grid" id="round-grid"></div>
+      <div class="entry-row">
+        <div class="entry-label">Expected Points</div>
+        <div id="expected-wrap" class="entry-inputs"></div>
+        <button id="toggle-fixed" class="btn btn-accent">Fixed</button>
+      </div>
+
+      <div class="entry-row">
+        <div class="entry-label">Achieved Points</div>
+        <div id="achieved-wrap" class="entry-inputs"></div>
+        <div class="spacer"></div>
+      </div>
 
       <div class="controls">
-        <button id="add-round" class="btn btn-primary">Add Round</button>
+        <button id="submit-round" class="btn btn-primary">Submit Round</button>
         <button id="undo-round" class="btn btn-secondary">Undo Last Round</button>
         <button id="reset-game" class="btn btn-secondary">Reset Game</button>
       </div>
@@ -53,9 +63,9 @@
     </section>
 
     <section class="card table-card">
-      <h2>Scoreboard</h2>
+      <h2>Score Table</h2>
       <div class="table-wrap">
-        <table id="score-table">
+        <table>
           <thead id="table-head"></thead>
           <tbody id="table-body"></tbody>
         </table>

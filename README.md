@@ -7,6 +7,7 @@ Simple round-by-round score calculator for the card game Call Break.
 ## Features
 
 - 4-player round scoring
+- Fixed 5-round score table (Round1-5, Mid-score, Final-score, Rank)
 - Supports `achieved = 0` (fixes the reference site limitation)
 - Auto-calculates per-round and cumulative totals
 - Undo last round
