@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Call Break Calculator</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Call Break Calculator</h1>
+    <p>Round scoring assistant with support for achieved tricks = 0</p>
+  </header>
+
+  <main class="app-shell">
+    <section class="card setup-card">
+      <h2>Players</h2>
+      <div class="player-grid" id="player-grid">
+        <label class="field">
+          <span>Player 1</span>
+          <input id="name-0" class="input" value="Player 1" maxlength="24" />
+        </label>
+        <label class="field">
+          <span>Player 2</span>
+          <input id="name-1" class="input" value="Player 2" maxlength="24" />
+        </label>
+        <label class="field">
+          <span>Player 3</span>
+          <input id="name-2" class="input" value="Player 3" maxlength="24" />
+        </label>
+        <label class="field">
+          <span>Player 4</span>
+          <input id="name-3" class="input" value="Player 4" maxlength="24" />
+        </label>
+      </div>
+    </section>
+
+    <section class="card round-card">
+      <div class="round-head">
+        <h2 id="round-title">Round 1</h2>
+        <p class="muted">Scoring rule: made call = <code>call + 0.1 × overtricks</code>, failed call = <code>-call</code></p>
+      </div>
+
+      <div class="round-grid" id="round-grid"></div>
+
+      <div class="controls">
+        <button id="add-round" class="btn btn-primary">Add Round</button>
+        <button id="undo-round" class="btn btn-secondary">Undo Last Round</button>
+        <button id="reset-game" class="btn btn-secondary">Reset Game</button>
+      </div>
+
+      <p id="message" class="message"></p>
+    </section>
+
+    <section class="card table-card">
+      <h2>Scoreboard</h2>
+      <div class="table-wrap">
+        <table id="score-table">
+          <thead id="table-head"></thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
