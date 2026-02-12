@@ -2,6 +2,8 @@
 
 Simple round-by-round score calculator for the card game Call Break.
 
+**[Play Now -> anubhavdhakal.github.io/callbreak-calculator](https://anubhavdhakal.github.io/callbreak-calculator/)**
+
 ## Features
 
 - 4-player round scoring
