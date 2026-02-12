@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Call Break Calculator</title>
+  <script>
+    if (location.hostname.endsWith("github.io") && !location.pathname.endsWith("/")) {
+      location.replace(`${location.pathname}/${location.search}${location.hash}`);
+    }
+  </script>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -43,13 +48,23 @@
 
       <div class="entry-row">
         <div class="entry-label">Expected Points</div>
-        <div id="expected-wrap" class="entry-inputs"></div>
+        <div id="expected-wrap" class="entry-inputs">
+          <input id="expected-0" class="input" type="number" min="0" max="13" value="1" />
+          <input id="expected-1" class="input" type="number" min="0" max="13" value="1" />
+          <input id="expected-2" class="input" type="number" min="0" max="13" value="1" />
+          <input id="expected-3" class="input" type="number" min="0" max="13" value="1" />
+        </div>
         <button id="toggle-fixed" class="btn btn-accent">Fixed</button>
       </div>
 
       <div class="entry-row">
         <div class="entry-label">Achieved Points</div>
-        <div id="achieved-wrap" class="entry-inputs"></div>
+        <div id="achieved-wrap" class="entry-inputs">
+          <input id="achieved-0" class="input" type="number" min="0" max="13" value="0" />
+          <input id="achieved-1" class="input" type="number" min="0" max="13" value="0" />
+          <input id="achieved-2" class="input" type="number" min="0" max="13" value="0" />
+          <input id="achieved-3" class="input" type="number" min="0" max="13" value="0" />
+        </div>
         <div class="spacer"></div>
       </div>
 
@@ -66,8 +81,25 @@
       <h2>Score Table</h2>
       <div class="table-wrap">
         <table>
-          <thead id="table-head"></thead>
-          <tbody id="table-body"></tbody>
+          <thead id="table-head">
+            <tr>
+              <th>CallBreak</th>
+              <th>Player 1</th>
+              <th>Player 2</th>
+              <th>Player 3</th>
+              <th>Player 4</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <tr><td>Round1</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr>
+            <tr><td>Round2</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr>
+            <tr><td>Round3</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr>
+            <tr><td>Round4</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr>
+            <tr class="mid-row"><td>Mid-score</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr>
+            <tr><td>Round5</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr>
+            <tr class="final-row"><td>Final-score</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr>
+            <tr class="rank-row"><td>Rank</td><td>--</td><td>--</td><td>--</td><td>--</td></tr>
+          </tbody>
         </table>
       </div>
     </section>
