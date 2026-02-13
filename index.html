@@ -12,38 +12,52 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <div id="name-modal" class="modal open">
+    <div class="modal-card">
+      <h2>Enter Player Names</h2>
+      <div class="player-grid">
+        <label class="field">
+          <span>Player 1</span>
+          <input id="modal-name-0" class="input" value="Player 1" maxlength="24" />
+        </label>
+        <label class="field">
+          <span>Player 2</span>
+          <input id="modal-name-1" class="input" value="Player 2" maxlength="24" />
+        </label>
+        <label class="field">
+          <span>Player 3</span>
+          <input id="modal-name-2" class="input" value="Player 3" maxlength="24" />
+        </label>
+        <label class="field">
+          <span>Player 4</span>
+          <input id="modal-name-3" class="input" value="Player 4" maxlength="24" />
+        </label>
+      </div>
+      <button id="start-game" class="btn btn-primary">Start Game</button>
+    </div>
+  </div>
+
   <header class="site-header">
     <h1>Call Break Calculator</h1>
     <p>5-round scoring assistant with support for achieved tricks = 0</p>
   </header>
 
   <main class="app-shell">
-    <section class="card setup-card">
-      <h2>Players</h2>
-      <div class="player-grid">
-        <label class="field">
-          <span>Player 1</span>
-          <input id="name-0" class="input" value="Player 1" maxlength="24" />
-        </label>
-        <label class="field">
-          <span>Player 2</span>
-          <input id="name-1" class="input" value="Player 2" maxlength="24" />
-        </label>
-        <label class="field">
-          <span>Player 3</span>
-          <input id="name-2" class="input" value="Player 3" maxlength="24" />
-        </label>
-        <label class="field">
-          <span>Player 4</span>
-          <input id="name-3" class="input" value="Player 4" maxlength="24" />
-        </label>
-      </div>
-    </section>
-
     <section class="card round-card">
       <div class="round-head">
         <h2 id="round-title">Round 1 / 5</h2>
         <p class="muted">Step 1: Fix expected points. Step 2: Enter achieved points and submit round.</p>
+      </div>
+
+      <div class="entry-players">
+        <div class="entry-label"></div>
+        <div id="entry-player-names" class="entry-inputs player-name-row">
+          <div class="player-chip">Player 1</div>
+          <div class="player-chip">Player 2</div>
+          <div class="player-chip">Player 3</div>
+          <div class="player-chip">Player 4</div>
+        </div>
+        <div class="spacer"></div>
       </div>
 
       <div class="entry-row">

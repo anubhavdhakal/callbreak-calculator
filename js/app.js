@@ -15,6 +15,9 @@ const state = {
 };
 
 const roundTitle = document.getElementById("round-title");
+const nameModal = document.getElementById("name-modal");
+const startGameBtn = document.getElementById("start-game");
+const entryPlayerNames = document.getElementById("entry-player-names");
 const expectedWrap = document.getElementById("expected-wrap");
 const achievedWrap = document.getElementById("achieved-wrap");
 const fixedBtn = document.getElementById("toggle-fixed");
@@ -97,6 +100,32 @@ function loadState() {
   } catch (error) {
     console.error("Failed to parse saved state", error);
   }
+}
+
+function openNameModal() {
+  for (let i = 0; i < PLAYER_COUNT; i += 1) {
+    const input = document.getElementById(`modal-name-${i}`);
+    input.value = state.names[i];
+  }
+  nameModal.classList.add("open");
+}
+
+function closeNameModal() {
+  nameModal.classList.remove("open");
+}
+
+function readModalNames() {
+  const names = [];
+  for (let i = 0; i < PLAYER_COUNT; i += 1) {
+    const input = document.getElementById(`modal-name-${i}`);
+    const clean = input.value.trim().slice(0, 24);
+    names.push(clean || `Player ${i + 1}`);
+  }
+  return names;
+}
+
+function renderEntryPlayerNames() {
+  entryPlayerNames.innerHTML = state.names.map((name) => `<div class="player-chip">${name}</div>`).join("");
 }
 
 function playerTotals(roundLimit = state.rounds.length) {
@@ -203,19 +232,6 @@ function renderRoundInputs() {
   }
 
   updateRoundHeader();
-}
-
-function bindNameInputs() {
-  for (let i = 0; i < PLAYER_COUNT; i += 1) {
-    const input = document.getElementById(`name-${i}`);
-    input.value = state.names[i];
-    input.addEventListener("input", () => {
-      const clean = input.value.trim().slice(0, 24);
-      state.names[i] = clean || `Player ${i + 1}`;
-      renderTable();
-      saveState();
-    });
-  }
 }
 
 function readExpectedFromUI() {
@@ -344,12 +360,31 @@ function resetGame() {
   renderTable();
 }
 
+function startNewGameFromModal() {
+  state.names = readModalNames();
+  state.rounds = [];
+  state.draft = {
+    expected: [1, 1, 1, 1],
+    achieved: [0, 0, 0, 0],
+    expectedLocked: false
+  };
+
+  showMessage("");
+  renderEntryPlayerNames();
+  renderRoundInputs();
+  renderTable();
+  saveState();
+  closeNameModal();
+}
+
 loadState();
-bindNameInputs();
+renderEntryPlayerNames();
 renderRoundInputs();
 renderTable();
+openNameModal();
 
 document.getElementById("toggle-fixed").addEventListener("click", toggleExpectedFixed);
 document.getElementById("submit-round").addEventListener("click", submitRound);
 document.getElementById("undo-round").addEventListener("click", undoRound);
 document.getElementById("reset-game").addEventListener("click", resetGame);
+startGameBtn.addEventListener("click", startNewGameFromModal);
