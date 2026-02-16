@@ -8,7 +8,7 @@ const state = {
   names: Array.from({ length: PLAYER_COUNT }, (_, i) => `Player ${i + 1}`),
   rounds: [],
   draft: {
-    expected: [1, 1, 1, 1],
+    expected: [0, 0, 0, 0],
     achieved: [0, 0, 0, 0],
     expectedLocked: false
   }
@@ -51,7 +51,7 @@ function isIntInRange(value, min, max) {
 
 function sanitizeDraft(draft) {
   const safe = {
-    expected: [1, 1, 1, 1],
+    expected: [0, 0, 0, 0],
     achieved: [0, 0, 0, 0],
     expectedLocked: false
   };
@@ -61,7 +61,7 @@ function sanitizeDraft(draft) {
   if (Array.isArray(draft.expected) && draft.expected.length === PLAYER_COUNT) {
     safe.expected = draft.expected.map((value) => {
       const n = Number(value);
-      return isIntInRange(n, 0, MAX_TRICKS) ? n : 1;
+      return isIntInRange(n, 0, MAX_TRICKS) ? n : 0;
     });
   }
 
@@ -316,7 +316,7 @@ function submitRound() {
 
   state.rounds.push(round);
   state.draft.expectedLocked = false;
-  state.draft.expected = [1, 1, 1, 1];
+  state.draft.expected = [0, 0, 0, 0];
   state.draft.achieved = [0, 0, 0, 0];
 
   if (state.rounds.length === TOTAL_ROUNDS) {
@@ -349,7 +349,7 @@ function resetGame() {
 
   state.rounds = [];
   state.draft = {
-    expected: [1, 1, 1, 1],
+    expected: [0, 0, 0, 0],
     achieved: [0, 0, 0, 0],
     expectedLocked: false
   };
@@ -364,7 +364,7 @@ function startNewGameFromModal() {
   state.names = readModalNames();
   state.rounds = [];
   state.draft = {
-    expected: [1, 1, 1, 1],
+    expected: [0, 0, 0, 0],
     achieved: [0, 0, 0, 0],
     expectedLocked: false
   };
