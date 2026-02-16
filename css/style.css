@@ -155,7 +155,7 @@ body {
 
 .entry-row {
   display: grid;
-  grid-template-columns: 190px 1fr auto;
+  grid-template-columns: 190px 1fr 72px auto;
   gap: 0.7rem;
   align-items: center;
   padding: 0.45rem 0;
@@ -164,7 +164,7 @@ body {
 
 .entry-players {
   display: grid;
-  grid-template-columns: 190px 1fr auto;
+  grid-template-columns: 190px 1fr 72px auto;
   gap: 0.7rem;
   align-items: center;
   padding: 0.2rem 0 0.45rem;
@@ -199,6 +199,24 @@ body {
   font-size: 0.84rem;
   color: #e8f8ff;
   font-weight: 700;
+}
+
+.entry-total-label {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.total-chip {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: rgba(108, 207, 255, 0.1);
+  color: #d8f3ff;
+  text-align: center;
+  font-weight: 700;
+  padding: 0.5rem 0.35rem;
 }
 
 .spacer {
@@ -324,6 +342,11 @@ tbody tr.rank-row td {
     grid-template-columns: 1fr;
     gap: 0.5rem;
     padding-bottom: 0;
+  }
+
+  .entry-total-label,
+  .total-chip {
+    text-align: left;
   }
 
   .entry-inputs {

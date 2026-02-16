@@ -20,6 +20,8 @@ const startGameBtn = document.getElementById("start-game");
 const entryPlayerNames = document.getElementById("entry-player-names");
 const expectedWrap = document.getElementById("expected-wrap");
 const achievedWrap = document.getElementById("achieved-wrap");
+const expectedTotal = document.getElementById("expected-total");
+const achievedTotal = document.getElementById("achieved-total");
 const fixedBtn = document.getElementById("toggle-fixed");
 const submitRoundBtn = document.getElementById("submit-round");
 const message = document.getElementById("message");
@@ -208,6 +210,7 @@ function renderInputRow(container, type, values, disabled = false) {
       if (raw === "") {
         state.draft[type][i] = 0;
         saveState();
+        updateDraftTotals();
         return;
       }
 
@@ -215,11 +218,21 @@ function renderInputRow(container, type, values, disabled = false) {
       if (isIntInRange(n, 0, MAX_TRICKS)) {
         state.draft[type][i] = n;
         saveState();
+        updateDraftTotals();
       }
     });
 
     container.appendChild(input);
   }
+}
+
+function totalOf(values) {
+  return values.reduce((sum, value) => sum + value, 0);
+}
+
+function updateDraftTotals() {
+  expectedTotal.textContent = String(totalOf(state.draft.expected));
+  achievedTotal.textContent = String(totalOf(state.draft.achieved));
 }
 
 function renderRoundInputs() {
@@ -240,6 +253,7 @@ function renderRoundInputs() {
   }
 
   updateRoundHeader();
+  updateDraftTotals();
 }
 
 function readExpectedFromUI() {
