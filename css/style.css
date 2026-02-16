@@ -135,6 +135,10 @@ body {
   box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.14);
 }
 
+.input::placeholder {
+  color: rgba(226, 235, 255, 0.4);
+}
+
 .round-head {
   margin-bottom: 0.8rem;
 }

@@ -197,13 +197,21 @@ function renderInputRow(container, type, values, disabled = false) {
     input.type = "number";
     input.min = "0";
     input.max = String(MAX_TRICKS);
-    input.value = String(values[i]);
+    input.placeholder = "0";
+    input.value = values[i] === 0 ? "" : String(values[i]);
     input.id = `${type}-${i}`;
     input.className = "input";
     input.disabled = disabled;
 
     input.addEventListener("input", () => {
-      const n = Number(input.value);
+      const raw = input.value.trim();
+      if (raw === "") {
+        state.draft[type][i] = 0;
+        saveState();
+        return;
+      }
+
+      const n = Number(raw);
       if (isIntInRange(n, 0, MAX_TRICKS)) {
         state.draft[type][i] = n;
         saveState();
@@ -238,7 +246,8 @@ function readExpectedFromUI() {
   const expected = [];
 
   for (let i = 0; i < PLAYER_COUNT; i += 1) {
-    const n = Number(document.getElementById(`expected-${i}`).value);
+    const raw = document.getElementById(`expected-${i}`).value.trim();
+    const n = raw === "" ? 0 : Number(raw);
     if (!isIntInRange(n, 0, MAX_TRICKS)) {
       return { error: `Expected values must be between 0 and ${MAX_TRICKS}.` };
     }
@@ -253,7 +262,8 @@ function readAchievedFromUI() {
   let achievedTotal = 0;
 
   for (let i = 0; i < PLAYER_COUNT; i += 1) {
-    const n = Number(document.getElementById(`achieved-${i}`).value);
+    const raw = document.getElementById(`achieved-${i}`).value.trim();
+    const n = raw === "" ? 0 : Number(raw);
     if (!isIntInRange(n, 0, MAX_TRICKS)) {
       return { error: `Achieved values must be between 0 and ${MAX_TRICKS}.` };
     }
