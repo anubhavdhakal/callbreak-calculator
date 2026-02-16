@@ -158,9 +158,9 @@ function rankFromScores(scores) {
   return ranks;
 }
 
-function rowValuesOrZero(roundIndex) {
+function rowValuesOrBlank(roundIndex) {
   const round = state.rounds[roundIndex];
-  if (!round) return Array(PLAYER_COUNT).fill("0.0");
+  if (!round) return Array(PLAYER_COUNT).fill("");
   return round.map((entry) => entry.score.toFixed(1));
 }
 
@@ -172,12 +172,12 @@ function renderTable() {
   const rankRow = state.rounds.length === TOTAL_ROUNDS ? rankFromScores(finalTotals) : Array(PLAYER_COUNT).fill("--");
 
   let rows = "";
-  rows += `<tr><td>Round1</td>${rowValuesOrZero(0).map((v) => `<td>${v}</td>`).join("")}</tr>`;
-  rows += `<tr><td>Round2</td>${rowValuesOrZero(1).map((v) => `<td>${v}</td>`).join("")}</tr>`;
-  rows += `<tr><td>Round3</td>${rowValuesOrZero(2).map((v) => `<td>${v}</td>`).join("")}</tr>`;
-  rows += `<tr><td>Round4</td>${rowValuesOrZero(3).map((v) => `<td>${v}</td>`).join("")}</tr>`;
+  rows += `<tr><td>Round1</td>${rowValuesOrBlank(0).map((v) => `<td>${v}</td>`).join("")}</tr>`;
+  rows += `<tr><td>Round2</td>${rowValuesOrBlank(1).map((v) => `<td>${v}</td>`).join("")}</tr>`;
+  rows += `<tr><td>Round3</td>${rowValuesOrBlank(2).map((v) => `<td>${v}</td>`).join("")}</tr>`;
+  rows += `<tr><td>Round4</td>${rowValuesOrBlank(3).map((v) => `<td>${v}</td>`).join("")}</tr>`;
   rows += `<tr class="mid-row"><td>Mid-score</td>${midTotals.map((v) => `<td>${v.toFixed(1)}</td>`).join("")}</tr>`;
-  rows += `<tr><td>Round5</td>${rowValuesOrZero(4).map((v) => `<td>${v}</td>`).join("")}</tr>`;
+  rows += `<tr><td>Round5</td>${rowValuesOrBlank(4).map((v) => `<td>${v}</td>`).join("")}</tr>`;
   rows += `<tr class="final-row"><td>Final-score</td>${finalTotals.map((v) => `<td>${v.toFixed(1)}</td>`).join("")}</tr>`;
   rows += `<tr class="rank-row"><td>Rank</td>${rankRow.map((v) => `<td>${v}</td>`).join("")}</tr>`;
 
